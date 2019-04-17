@@ -792,6 +792,8 @@ func (u *Unmarshaler) unmarshalValue(target reflect.Value, inputValue json.RawMe
 			unq, err := unquote(string(inputValue))
 			if err != nil {
 				return err
+			} else if unq == "" {
+				return nil
 			}
 
 			d, err := time.ParseDuration(unq)
@@ -809,6 +811,8 @@ func (u *Unmarshaler) unmarshalValue(target reflect.Value, inputValue json.RawMe
 			unq, err := unquote(string(inputValue))
 			if err != nil {
 				return err
+			} else if unq == "" {
+				return nil
 			}
 
 			t, err := time.Parse(time.RFC3339Nano, unq)
